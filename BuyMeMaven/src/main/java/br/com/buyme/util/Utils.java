@@ -1,4 +1,4 @@
-package util;
+package br.com.buyme.util;
 
 import java.security.MessageDigest;
 

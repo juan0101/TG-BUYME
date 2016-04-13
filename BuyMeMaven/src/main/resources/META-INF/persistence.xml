@@ -10,7 +10,10 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- entidade mapeada -->
-		<class>entity.Usuario</class>
+		<class>br.com.buyme.entity.Usuario</class>
+		<class>br.com.buyme.entity.Produto</class>
+		<class>br.com.buyme.entity.Ingrediente</class>
+		<class>br.com.buyme.entity.ProdutoIngrediente</class>
 
 		<properties>
 			<!-- dados da conexao -->
@@ -20,7 +23,8 @@
 			<property name="javax.persistence.jdbc.password" value="123" />
 
 			<!-- propriedades do hibernate -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" /> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 
