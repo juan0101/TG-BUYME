@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.EditarFormaController">
+   <children>
+      <TextField fx:id="quantidade" layoutX="699.0" layoutY="266.0" />
+      <Label layoutX="275.0" layoutY="76.0" text="Editar Forma:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCodigo" layoutX="699.0" layoutY="123.0" text="Código: " />
+      <TextField fx:id="codigo" disable="true" layoutX="699.0" layoutY="140.0" />
+      <Label fx:id="lblDescricao" layoutX="699.0" layoutY="165.0" text="Descrição:" />
+      <TextField fx:id="descricao" layoutX="699.0" layoutY="182.0" prefHeight="25.0" prefWidth="237.0" />
+      <Button fx:id="btnFinalizar" disable="true" layoutX="699.0" layoutY="300.0" mnemonicParsing="false" onAction="#salvarEdicao" text="Atualizar" />
+      <Button fx:id="btnVoltar" layoutX="20.0" layoutY="51.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <Label fx:id="lblForma" layoutX="699.0" layoutY="206.0" text="Forma do produto:" />
+      <Label fx:id="lblQuantidade" layoutX="699.0" layoutY="248.0" text="Quantidade de produtos feitos com 1 forma:" />
+      <TableView fx:id="tabela_forma" layoutX="20.0" layoutY="123.0" prefHeight="462.0" prefWidth="623.0">
+        <columns>
+          <TableColumn fx:id="cCodigo" prefWidth="128.0" text="CODIGO" />
+          <TableColumn fx:id="cDescricao" prefWidth="217.0" text="DESCRICAO" />
+            <TableColumn fx:id="cProduto" prefWidth="180.0" text="PRODUTO" />
+            <TableColumn fx:id="cQuant" prefWidth="97.0" text="QUANT. PROD." />
+        </columns>
+      </TableView>
+      <Button layoutX="50.0" layoutY="594.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <Button layoutX="115.0" layoutY="594.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+      <ComboBox fx:id="comboProd" layoutX="699.0" layoutY="223.0" prefHeight="25.0" prefWidth="237.0" />
+   </children>
+</AnchorPane>

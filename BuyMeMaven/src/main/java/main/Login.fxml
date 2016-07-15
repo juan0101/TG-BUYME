@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.LoginController">
+   <center>
+      <HBox prefHeight="281.0" prefWidth="203.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="281.0" prefWidth="18.0">
+               <children>
+                  <ImageView id="imgLoginUsuario" fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../view/icon/usuario.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="2.0" right="2.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView id="imgLoginSenha" fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <image>
+                        <Image url="@../view/icon/senha.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="2.0" right="2.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="281.0" prefWidth="162.0">
+               <children>
+                  <TextField id="txtLoginUsuario" fx:id="txtLoginUsuario" prefHeight="25.0" prefWidth="145.0" promptText="Usuário">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="2.0" right="3.0" top="9.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField id="txtLoginSenha" fx:id="txtLoginSenha" prefHeight="25.0" prefWidth="145.0" promptText="Senha">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="2.0" right="3.0" top="11.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <Button id="btnLoginEntrar" defaultButton="true" mnemonicParsing="false" onAction="#verificarLogin" text="Entrar" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="2.0" right="3.0" top="9.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <left>
+      <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="155.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="127.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../view/icon/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

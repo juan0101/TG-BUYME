@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.EditarUsuarioController">
+   <children>
+      <Label layoutX="278.0" layoutY="43.0" text="Editar Usuario">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNome" layoutX="675.0" layoutY="113.0" text="Nome:" />
+      <TextField fx:id="nome" layoutX="674.0" layoutY="130.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lblTelefone" layoutX="674.0" layoutY="155.0" text="Telefone: " />
+      <TextField fx:id="telefone" layoutX="674.0" layoutY="172.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lblEndereco" layoutX="674.0" layoutY="197.0" text="Endereço: " />
+      <TextField fx:id="endereco" layoutX="674.0" layoutY="214.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lblNum" layoutX="675.0" layoutY="239.0" text="Num:" />
+      <TextField fx:id="numero" layoutX="675.0" layoutY="256.0" prefHeight="25.0" prefWidth="71.0" />
+      <Label fx:id="lblCidade" layoutX="675.0" layoutY="281.0" text="Cidade:" />
+      <TextField fx:id="cidade" layoutX="675.0" layoutY="298.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lblEmail" layoutX="675.0" layoutY="323.0" text="Email:" />
+      <TextField fx:id="email" layoutX="675.0" layoutY="340.0" prefHeight="25.0" prefWidth="252.0" />
+      <CheckBox fx:id="admin" layoutX="679.0" layoutY="379.0" mnemonicParsing="false" text="Administrador" />
+      <Button fx:id="btnFinalizar" disable="true" layoutX="673.0" layoutY="411.0" mnemonicParsing="false" onAction="#salvarEdicao" text="Finalizar" />
+      <Button fx:id="btnVoltar" layoutX="39.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <TableView fx:id="tabela_usuario" layoutX="14.0" layoutY="71.0" prefHeight="499.0" prefWidth="647.0">
+         <columns>
+            <TableColumn fx:id="cLogin" prefWidth="122.0" text="LOGIN" />
+            <TableColumn fx:id="cNome" prefWidth="170.0" text="NOME" />
+            <TableColumn fx:id="cTelefone" prefWidth="104.0" text="TELEFONE" />
+            <TableColumn fx:id="cEmail" prefWidth="174.0" text="EMAIL" />
+            <TableColumn fx:id="cAdmin" prefWidth="75.0" text="ADMIN" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnEditar" layoutX="61.0" layoutY="581.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <Button fx:id="btnExcluir" layoutX="125.0" layoutY="581.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+      <Label layoutX="676.0" layoutY="71.0" text="Login:" />
+      <TextField fx:id="login" layoutX="674.0" layoutY="88.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button fx:id="btnTrocarSenha" disable="true" layoutX="750.0" layoutY="411.0" mnemonicParsing="false" onAction="#trocarSenha" text="Trocar Senha" />
+      <Label fx:id="lblSenhaAntiga" layoutX="675.0" layoutY="447.0" text="Senha Antiga:" visible="false" />
+      <Label fx:id="lblNovaSenha" layoutX="675.0" layoutY="489.0" text="Nova Senha:" visible="false" />
+      <PasswordField fx:id="senhaAntiga" layoutX="674.0" layoutY="464.0" prefHeight="25.0" prefWidth="252.0" visible="false" />
+      <PasswordField fx:id="novaSenha" layoutX="674.0" layoutY="506.0" prefHeight="25.0" prefWidth="252.0" visible="false" />
+      <Button fx:id="btnSalvarSenha" layoutX="673.0" layoutY="545.0" mnemonicParsing="false" onAction="#salvarNovaSenha" text="Salvar Senha" visible="false" />
+   </children>
+</AnchorPane>

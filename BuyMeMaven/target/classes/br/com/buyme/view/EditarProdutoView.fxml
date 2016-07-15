@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.EditarProdutoController">
+   <children>
+      <Label layoutX="175.0" layoutY="80.0" text="Edição de produtos:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabela_ingrediente" layoutX="546.0" layoutY="265.0" prefHeight="319.0" prefWidth="385.0">
+         <columns>
+            <TableColumn fx:id="coluna_ingrediente" prefWidth="196.0" text="INGREDIENTE" />
+            <TableColumn fx:id="coluna_quantidade" prefWidth="98.0" text="QUANTIDADE" />
+            <TableColumn fx:id="coluna_medida" prefWidth="89.0" text="MEDIDA" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <Button fx:id="btnFinalizar" disable="true" layoutX="609.0" layoutY="588.0" mnemonicParsing="false" onAction="#salvarProduto" text="Salvar" />
+      <Button fx:id="btnAdicionar" disable="true" layoutX="545.0" layoutY="236.0" mnemonicParsing="false" onAction="#adicionarIngrediente" text="Adicionar" />
+      <TextField fx:id="quantidade" layoutX="545.0" layoutY="203.0" prefHeight="25.0" prefWidth="88.0" />
+      <RadioButton fx:id="quilo" layoutX="719.0" layoutY="207.0" mnemonicParsing="false" text="Quilos">
+         <toggleGroup>
+            <ToggleGroup fx:id="peso" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="grama" layoutX="643.0" layoutY="207.0" mnemonicParsing="false" selected="true" text="Gramas" toggleGroup="$peso" />
+      <ComboBox fx:id="comboIng" layoutX="544.0" layoutY="173.0" prefWidth="150.0" />
+      <Label fx:id="lblIngrediente" layoutX="546.0" layoutY="156.0" text="Ingredientes:" />
+      <TextField fx:id="preco" layoutX="843.0" layoutY="124.0" prefHeight="25.0" prefWidth="88.0" />
+      <Label fx:id="lblPreco" layoutX="843.0" layoutY="107.0" text="Preço: (Unidade)" />
+      <TextField fx:id="nome" layoutX="544.0" layoutY="124.0" prefHeight="25.0" prefWidth="289.0" />
+      <Label fx:id="lblNome" layoutX="544.0" layoutY="107.0" text="Nome:" />
+      <Button fx:id="btnRetirar" disable="true" layoutX="546.0" layoutY="588.0" mnemonicParsing="false" onAction="#retirarIngrediente" text="Retirar" />
+      <TableView fx:id="tabela_produto" layoutX="14.0" layoutY="116.0" prefHeight="468.0" prefWidth="490.0">
+         <columns>
+            <TableColumn fx:id="cCodigo" prefWidth="124.0" text="CODIGO" />
+            <TableColumn fx:id="cNome" prefWidth="234.0" text="NOME" />
+            <TableColumn fx:id="cValor" prefWidth="131.0" text="VALOR" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnEditar" layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#editarProduto" text="Editar" />
+      <Button fx:id="btnExcluir" layoutX="74.0" layoutY="594.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+   </children>
+</AnchorPane>

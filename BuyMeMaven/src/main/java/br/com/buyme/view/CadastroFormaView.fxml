@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.CadastroFormaController">
+   <children>
+      <Button fx:id="btnVoltar" layoutX="144.0" layoutY="288.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <Button fx:id="btnCadastrar" layoutX="43.0" layoutY="288.0" mnemonicParsing="false" onAction="#cadastrarForma" text="Cadastrar" />
+      <TextField fx:id="txtDescricao" layoutX="43.0" layoutY="170.0" />
+      <Label layoutX="43.0" layoutY="153.0" text="Descrição:" />
+      <TextField fx:id="txtCodigo" disable="true" layoutX="43.0" layoutY="128.0" />
+      <Label layoutX="43.0" layoutY="111.0" text="Código: " />
+      <Label layoutX="43.0" layoutY="53.0" text="Cadastro de Forma:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="195.0" text="Forma do produto:" />
+      <Label layoutX="43.0" layoutY="237.0" text="Quantidade de produtos feitos com 1 forma:" />
+      <TextField fx:id="txtQuantidade" layoutX="43.0" layoutY="254.0" />
+      <ComboBox fx:id="comboProd" layoutX="43.0" layoutY="212.0" prefWidth="150.0" />
+      <Button layoutX="208.0" layoutY="128.0" mnemonicParsing="false" onAction="#gerarCodigo" text="Gerar Código" />
+   </children>
+</AnchorPane>

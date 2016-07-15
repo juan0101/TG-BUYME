@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.AnalisarProducaoController">
+   <children>
+      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <Label layoutX="390.0" layoutY="86.0" text="Análise de Produção">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabela_analise" layoutX="14.0" layoutY="125.0" prefHeight="264.0" prefWidth="924.0">
+        <columns>
+          <TableColumn fx:id="cDescricao" prefWidth="197.0" text="DESCRIÇÃO" />
+          <TableColumn fx:id="cQuantidade" prefWidth="117.0" text="QUANT. ESPERADA" />
+            <TableColumn fx:id="cValorUni" prefWidth="163.0" text="VALOR UNI." />
+            <TableColumn fx:id="cValorTotal" prefWidth="151.0" text="VALOR TOTAL" />
+            <TableColumn fx:id="cDataFabricacao" prefWidth="155.0" text="D. FABRICAÇÃO" />
+            <TableColumn fx:id="cDataValidade" prefWidth="139.0" text="D. VALIDADE" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="401.0" mnemonicParsing="false" onAction="#analisar" text="Analisar" />
+      <Button layoutX="86.0" layoutY="401.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+      <Label fx:id="lblProduto" layoutX="14.0" layoutY="449.0" text="Produto:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblQuantEsperada" layoutX="14.0" layoutY="484.0" text="Quantidade esperada:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblQuantProduzida" layoutX="14.0" layoutY="519.0" text="Quantidade produzida:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="quantidadeProduzida" layoutX="174.0" layoutY="517.0" />
+      <Label fx:id="lblProd" layoutX="86.0" layoutY="451.0" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblQuantValor" layoutX="174.0" layoutY="486.0" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnFinalizar" disable="true" layoutX="12.0" layoutY="549.0" mnemonicParsing="false" onAction="#finalizar" prefHeight="25.0" prefWidth="76.0" text="Finalizar" />
+   </children>
+</AnchorPane>
