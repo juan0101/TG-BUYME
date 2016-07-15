@@ -1,4 +1,4 @@
-package br.com.buyme.controller;
+package controller;
 
 public class VendedorController {
 

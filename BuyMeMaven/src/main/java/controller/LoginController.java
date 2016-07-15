@@ -1,12 +1,11 @@
-package br.com.buyme.controller;
+package controller;
 
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import br.com.buyme.dao.UsuarioDAO;
-import br.com.buyme.entity.Usuario;
-import br.com.buyme.util.Utils;
+import dao.UsuarioDAO;
+import entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.Data;
+import util.Utils;
 
 @Data
 public class LoginController{
@@ -28,7 +28,6 @@ public class LoginController{
 	public void verificarLogin(ActionEvent event) throws IOException{
 		Usuario usuario = new Usuario();
 		System.out.println("verificou");
-		
 		usuario.setLogin(txtLoginUsuario.getText());
 		usuario.setSenha(Utils.senhaSha256(txtLoginSenha.getText()));
 		UsuarioDAO usuDao = new UsuarioDAO();
@@ -41,24 +40,13 @@ public class LoginController{
 	}
 	
 	public void mudarScene(ActionEvent event,Usuario usuario)throws IOException{
-		if(usuario.getAdmin() == 1){
-			System.out.println("entrei admin");
-			Parent newPageParent = FXMLLoader.load(getClass().getResource("../view/AdminView.fxml"));
-			Scene newPageScene = new Scene(newPageParent);
-			Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			newStage.hide();
-			newStage.setScene(newPageScene);
-			newStage.show();
-		}else if(usuario.getAdmin() == 0){
-			System.out.println("entrei vendedor");
-			Parent newPageParent = FXMLLoader.load(getClass().getResource("../view/VendedorView.fxml"));
-			Scene newPageScene = new Scene(newPageParent);
-			Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			newStage.hide();
-			newStage.setScene(newPageScene);
-			newStage.show();
-		}
-		
+		System.out.println("entrei");
+		Parent newPageParent = FXMLLoader.load(getClass().getResource("../view/AdminView.fxml"));
+		Scene newPageScene = new Scene(newPageParent);
+		Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		newStage.hide();
+		newStage.setScene(newPageScene);
+		newStage.show();
 	}
 	
 	

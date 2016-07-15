@@ -1,4 +1,4 @@
-package br.com.buyme.conexao;
+package conexao;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package br.com.buyme.dao;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,10 +6,9 @@ import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
-import br.com.buyme.conexao.ConexaoBD;
-import br.com.buyme.entity.Usuario;
+import conexao.ConexaoBD;
+import entity.Usuario;
 
 public class UsuarioDAO {
 
@@ -31,21 +30,6 @@ public class UsuarioDAO {
 			em.close();
 		}
 		return usu;
-	}
-	
-	public Usuario getOneWithLogin(String login){
-		EntityManager em = getEM();
-		Usuario usuario = null;
-		try{
-			Query query = em.createQuery("Select u FROM Usuario u WHERE u.login = :login");
-			query.setParameter("login", login);
-			usuario = (Usuario)query.getSingleResult();	
-		}catch (Exception e){
-			System.out.println(e);
-		}finally{
-			em.close();
-		}
-		return usuario;
 	}
 	
 	public Usuario getOne(Usuario usu){
