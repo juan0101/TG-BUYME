@@ -28,8 +28,9 @@ public class EncomendaDAO {
 			e.setProduto(produto);
 			e.setQuantidade(quantidade);
 			e.setValor(valor);
-			e.setDescCliente(descCliente);
-			e.setDescProduto(descProduto);
+			e.setDescCliente(descProduto);
+			e.setDescProduto(descCliente);
+			e.setDesativado(false);
 			em.persist(e);
 			em.getTransaction().commit();
 		}catch(Exception ex){
@@ -45,7 +46,7 @@ public class EncomendaDAO {
 		EntityManager em = getEM();
 		List<Encomenda> encomendas = null;
 		try{
-			Query query = em.createQuery("Select e FROM Encomenda e");
+			Query query = em.createQuery("Select e FROM Encomenda e where e.desativado = 0");
 			encomendas = query.getResultList();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -77,6 +78,44 @@ public class EncomendaDAO {
 			try{
 				em.getTransaction().begin();
 				em.remove(e);
+				em.getTransaction().commit();
+			}catch(Exception ex){
+				ex.printStackTrace();
+				em.getTransaction().rollback();
+			}finally {
+				em.close();
+			}
+		}catch (Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	
+	public void desativarById(int id){
+		try{
+			EntityManager em = getEM();
+			Encomenda e = em.find(Encomenda.class, id);
+			try{
+				em.getTransaction().begin();
+				e.setDesativado(true);
+				em.getTransaction().commit();
+			}catch(Exception ex){
+				ex.printStackTrace();
+				em.getTransaction().rollback();
+			}finally {
+				em.close();
+			}
+		}catch (Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	
+	public void diminuirQuantidadeById(int id,int quantidade){
+		try{
+			EntityManager em = getEM();
+			Encomenda e = em.find(Encomenda.class, id);
+			try{
+				em.getTransaction().begin();
+				e.setQuantidade(quantidade);
 				em.getTransaction().commit();
 			}catch(Exception ex){
 				ex.printStackTrace();

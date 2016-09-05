@@ -14,7 +14,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboProd" layoutX="14.0" layoutY="196.0" prefHeight="25.0" prefWidth="226.0" />
+      <ComboBox fx:id="comboProd" layoutX="14.0" layoutY="196.0" onAction="#mostrarValor" prefHeight="25.0" prefWidth="226.0" />
       <TextField fx:id="quantidade" layoutX="14.0" layoutY="257.0" prefHeight="25.0" prefWidth="226.0" />
       <Button fx:id="btnAdicionar" layoutX="13.0" layoutY="298.0" mnemonicParsing="false" onAction="#adicionar" prefHeight="25.0" prefWidth="99.0" text="Adicionar" />
       <TableView fx:id="tabela_encomenda" layoutX="295.0" layoutY="110.0" prefHeight="465.0" prefWidth="647.0">
@@ -35,7 +35,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblValor" layoutX="188.0" layoutY="176.0" text="Label">
+      <Label fx:id="lblValor" layoutX="188.0" layoutY="176.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

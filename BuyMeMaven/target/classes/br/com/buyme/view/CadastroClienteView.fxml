@@ -13,8 +13,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btn_voltar" layoutX="243.0" layoutY="385.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="87.0" text="Voltar" />
-      <Button fx:id="btn_finalizar" layoutX="131.0" layoutY="385.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="87.0" text="Finalizar" />
+      <Button fx:id="btn_voltar" layoutX="243.0" layoutY="519.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="87.0" text="Voltar" />
+      <Button fx:id="btn_finalizar" layoutX="131.0" layoutY="519.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="87.0" text="Finalizar" />
       <Label layoutX="134.0" layoutY="334.0" text="Email: ">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -46,5 +46,22 @@
       <TextField fx:id="endereco" layoutX="216.0" layoutY="249.0" prefHeight="25.0" prefWidth="539.0" />
       <TextField fx:id="telefone" layoutX="216.0" layoutY="209.0" prefHeight="25.0" prefWidth="274.0" />
       <TextField fx:id="nome" layoutX="216.0" layoutY="165.0" prefHeight="25.0" prefWidth="539.0" />
+      <Label layoutX="302.0" layoutY="383.0" text="Necessário para utilização do aplicativo mobile" underline="true">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="424.0" text="Login:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="login" layoutX="216.0" layoutY="421.0" prefHeight="25.0" prefWidth="274.0" />
+      <Label layoutX="134.0" layoutY="464.0" text="Senha:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="senha" layoutX="216.0" layoutY="462.0" prefHeight="25.0" prefWidth="274.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.CadastroMotivoPerdaController">
+   <children>
+      <Button layoutX="208.0" layoutY="128.0" mnemonicParsing="false" onAction="#gerarCodigo" text="Gerar Código" />
+      <Button fx:id="btnVoltar" layoutX="144.0" layoutY="218.0" mnemonicParsing="false" onAction="#voltarMenu" text="Voltar" />
+      <Button fx:id="btnCadastrar" layoutX="43.0" layoutY="218.0" mnemonicParsing="false" onAction="#cadastrarMotivoPerda" text="Cadastrar" />
+      <TextField fx:id="nome" layoutX="43.0" layoutY="170.0" />
+      <Label layoutX="43.0" layoutY="153.0" text="Nome: " />
+      <TextField fx:id="codigo" disable="true" layoutX="43.0" layoutY="128.0" />
+      <Label layoutX="43.0" layoutY="111.0" text="Código: " />
+      <Label layoutX="43.0" layoutY="53.0" text="Cadastro de motivos de perda:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

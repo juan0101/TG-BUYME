@@ -29,5 +29,6 @@ public class Forma {
 	@Column(name="quantidade", nullable=false)
 	private int quantidade;
 	
+	
 
 }

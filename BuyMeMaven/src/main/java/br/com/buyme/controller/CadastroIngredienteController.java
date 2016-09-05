@@ -62,7 +62,7 @@ public class CadastroIngredienteController {
 					ing.setDescricao(descIng);
 					ingDao.salvar(ing);
 					
-					Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+					Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 			        dialogoInfo.setTitle("BuyMe");
 			        dialogoInfo.setHeaderText("Salvar Ingrediente");
 			        dialogoInfo.setContentText("Ingrediente salvo com sucesso!");

@@ -149,7 +149,7 @@ public class EditarProdutoController {
     				dataProduto.remove(produto);
     				prodDao.excluirProduto(produto.getId());
     				
-    				Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+    				Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
     		        dialogoInfo.setTitle("BuyMe");
     		        dialogoInfo.setHeaderText("Editar Produto");
     		        dialogoInfo.setContentText("Produto excluido com sucesso!");
@@ -221,7 +221,7 @@ public class EditarProdutoController {
 					prodIngDao.deleteListProdIng(idProdIng);
 					prodDao.editarProduto(produto.getId(),nProd,Double.parseDouble(pProd),listaProdutoIngrediente);
 					
-					Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+					Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 			        dialogoInfo.setTitle("BuyMe");
 			        dialogoInfo.setHeaderText("Editar Produto");
 			        dialogoInfo.setContentText("Produto foi editado com sucesso!");

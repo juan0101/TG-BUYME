@@ -116,7 +116,7 @@ public class CadastroProdutoController {
 						}
 						prodDao.salvar(produto);
 						
-						Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+						Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 				        dialogoInfo.setTitle("BuyMe");
 				        dialogoInfo.setHeaderText("Salvar Produto");
 				        dialogoInfo.setContentText("Produto salvo com sucesso!");

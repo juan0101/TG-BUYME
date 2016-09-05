@@ -3,11 +3,12 @@ package br.com.buyme.controller;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import br.com.buyme.dao.ProdutoAnalisarDAO;
 import br.com.buyme.dao.ProdutoProntoDAO;
+import br.com.buyme.entity.ProdMot;
 import br.com.buyme.entity.ProdutoAnalisar;
+import br.com.buyme.popup.Popup;
 import br.com.buyme.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,17 +18,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AnalisarProducaoController {
 	
+	@FXML
+	private Parent root;
+	
+	private Popup popup = new Popup("Análise de Produção");
 	@FXML private TableView<ProdutoAnalisar> tabela_analise;
 	@FXML private TableColumn<ProdutoAnalisar, String> cDescricao;
     @FXML private TableColumn<ProdutoAnalisar, Integer> cQuantidade;
@@ -37,6 +43,8 @@ public class AnalisarProducaoController {
     @FXML private TableColumn<ProdutoAnalisar, Date> cDataValidade;
     private ObservableList<ProdutoAnalisar> data;
     private List<ProdutoAnalisar> pas = null;
+    
+    @FXML private Label lblCodProduto, lblNomeProduto, lblDFabricacao, lblDValidade, lblQuantidade;
     @FXML private Label lblProduto,lblProd,lblQuantEsperada,lblQuantValor,lblQuantProduzida;
     @FXML private TextField quantidadeProduzida;
     @FXML private Button btnFinalizar;
@@ -44,6 +52,7 @@ public class AnalisarProducaoController {
     private ProdutoAnalisarDAO paDao = new ProdutoAnalisarDAO();
     private ProdutoAnalisar pa = null;
     private ProdutoProntoDAO ppDao = new ProdutoProntoDAO();
+    private List<ProdMot> pms = null;
     
     @FXML
     public void analisar(){
@@ -54,12 +63,15 @@ public class AnalisarProducaoController {
     		lblQuantValor.setText(pa.getQuantidade()+"");
     		lblQuantValor.setVisible(true);
     		btnFinalizar.setDisable(false);
+    		
+    		lblCodProduto.setText("");
+    		lblNomeProduto.setText("");
+    		lblDFabricacao.setText("");
+    		lblDValidade.setText("");
+    		lblQuantidade.setText("");
+    		
     	}else{
-    		Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Análise de Produção");
-	        dialogoInfo.setContentText("Selecione uma produção para analisar!");
-	        dialogoInfo.showAndWait();
+    		popup.getError("Selecione uma produção para analisar!");
     	}
     }
     
@@ -72,21 +84,13 @@ public class AnalisarProducaoController {
     			paDao.excluir(pa.getId());
     			atualizarListProducao();
     		}catch(Exception e){
-    			
+    			e.printStackTrace();
+    			popup.getError("Houve um erro, tente novamente!");
     		}
     	}else{
-    		Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Análise de Produção");
-	        dialogoInfo.setContentText("Selecione uma produção para excluir!");
-	        dialogoInfo.showAndWait();
+    		popup.getError("Selecione uma produção para excluir!");
     	}
     }
-    
-    public int gerarCodigo(){
-		Random randomGenerator = new Random();
-		return randomGenerator.nextInt(10000);
-	}
     
     public void limparCampos(){
     	quantidadeProduzida.setText("");
@@ -97,6 +101,7 @@ public class AnalisarProducaoController {
 		btnFinalizar.setDisable(true);
     }
     
+    
     @FXML
     public void finalizar(){
     	String qtdProd = quantidadeProduzida.getText();
@@ -104,40 +109,36 @@ public class AnalisarProducaoController {
     		if(Utils.isNumber(qtdProd)){
     			try{
     				int qtdProdReal = Integer.parseInt(qtdProd);
-    				paDao.finalizarAnalise(pa.getId(), qtdProdReal);
-    				
-    				for(int i=0; i<qtdProdReal; i++){
-    					ppDao.salvar(gerarCodigo()+"", pa.getDescricao(), pa.getData_fabricacao(), pa.getData_validade(), pa.getValor());					
+    				if(qtdProdReal > 0){
+    					pms = verificarMotivoPerda(pa.getQuantidade() - qtdProdReal);
+        				for(ProdMot pm: pms){
+        					System.out.println(pm.getMotDesc());
+        				}
     				}
+    				paDao.finalizarAnalise(pa.getId(), qtdProdReal,pms);
     				
-    				Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-        	        dialogoInfo.setTitle("BuyMe");
-        	        dialogoInfo.setHeaderText("Análise de Produção");
-        	        dialogoInfo.setContentText("Produção gerada com sucesso!");
-        	        dialogoInfo.showAndWait();
+    				ppDao.salvar(pa.getCodigoProduto(), pa.getDescricao(), pa.getDataFabricacao(), pa.getDataValidade(), qtdProdReal);
     				
+    				lblCodProduto.setText(pa.getCodigoProduto()+"");
+    				lblNomeProduto.setText(pa.getDescricao());
+    				lblDFabricacao.setText(pa.getDataFabricacao()+"");
+    				lblDValidade.setText(pa.getDataValidade()+"");
+    				lblQuantidade.setText(qtdProdReal+"");
+    				
+    				popup.getInformation("Produção gerada com sucesso!");
+        	        
     				atualizarListProducao();
+    				
+    				limparCampos();
     			}catch (Exception e){
     				e.printStackTrace();
-    				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-        	        dialogoInfo.setTitle("BuyMe");
-        	        dialogoInfo.setHeaderText("Análise de Produção");
-        	        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-        	        dialogoInfo.showAndWait();
+    				popup.getError("Houve um erro, tente novamente!");
     			}
     		}else{
-    			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-    	        dialogoInfo.setTitle("BuyMe");
-    	        dialogoInfo.setHeaderText("Análise de Produção");
-    	        dialogoInfo.setContentText("Quantidade deve ser um numeral inteiro!");
-    	        dialogoInfo.showAndWait();
+    			popup.getError("Quantidade deve ser um numeral inteiro!");
     		}
     	}else{
-    		Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Análise de Produção");
-	        dialogoInfo.setContentText("Informe a quantidade que foi produzida do produto!");
-	        dialogoInfo.showAndWait();
+    		popup.getError("Informe a quantidade que foi produzida do produto!");
     	}
     	
     }
@@ -169,10 +170,10 @@ public class AnalisarProducaoController {
 		            new PropertyValueFactory<ProdutoAnalisar,Double>("valorTotal")
 		        );
     			cDataFabricacao.setCellValueFactory(
-		            new PropertyValueFactory<ProdutoAnalisar,Date>("data_fabricacao")
+		            new PropertyValueFactory<ProdutoAnalisar,Date>("dataFabricacao")
 		        );
     			cDataValidade.setCellValueFactory(
-		            new PropertyValueFactory<ProdutoAnalisar,Date>("data_validade")
+		            new PropertyValueFactory<ProdutoAnalisar,Date>("dataValidade")
 		        );
 		 
 		        data = FXCollections.observableArrayList();
@@ -182,6 +183,30 @@ public class AnalisarProducaoController {
     	}catch(Exception e){
     		e.printStackTrace();
     	}
+    }
+    
+    public List<ProdMot> verificarMotivoPerda(int quantidadeProduzida){
+    	try {
+    		FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(getClass().getResource("../view/SelecionaMotivoPerdaView.fxml"));
+    		AnchorPane page = (AnchorPane) loader.load();
+    		
+    		Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+    		
+    		SelecionarMotivoPerdaController selecionaroMPController = loader.getController();
+    		selecionaroMPController.setValorQuantTotal(quantidadeProduzida);
+    		selecionaroMPController.setDialogStage(dialogStage);
+    		
+    		dialogStage.showAndWait();
+    		return selecionaroMPController.fechar();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return null;
     }
 	
 	@FXML

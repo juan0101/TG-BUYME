@@ -44,7 +44,7 @@ public class CadastroUsuarioController {
 					confSenhaUsu != null && !confSenhaUsu.isEmpty()){
 				if(Utils.isNumber(numUsu)){
 					if(verificarLogin(loginUsu)){
-						if(senhaUsu.length() > 4){
+						if(senhaUsu.length() >= 4){
 							if(senhaUsu.equals(confSenhaUsu)){
 								Usuario usuario = new Usuario();
 								usuario.setLogin(loginUsu);
@@ -63,7 +63,7 @@ public class CadastroUsuarioController {
 							
 								usuDao.salvar(usuario);	
 								
-								Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+								Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 						        dialogoInfo.setTitle("BuyMe");
 						        dialogoInfo.setHeaderText("Salvar Usuário");
 						        dialogoInfo.setContentText("Usuário salvo com sucesso!");

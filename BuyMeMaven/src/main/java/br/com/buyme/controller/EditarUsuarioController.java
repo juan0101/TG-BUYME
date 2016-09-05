@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.buyme.dao.UsuarioDAO;
 import br.com.buyme.entity.Usuario;
+import br.com.buyme.popup.Popup;
 import br.com.buyme.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -28,6 +28,7 @@ import lombok.Data;
 @Data
 public class EditarUsuarioController {
 	
+	private Popup popup = new Popup("Editar Usuário");
 	@FXML private TextField login,nome,telefone,endereco,numero,cidade,email;
 	@FXML private TextField senhaAntiga,novaSenha;
 	@FXML private CheckBox admin;
@@ -120,34 +121,18 @@ public class EditarUsuarioController {
 				if(Utils.isNumber(numUsu)){
 					usuDao.editarUsuario(idUsu, loginUsu, nomeUsu, telUsu, endUsu, Integer.parseInt(numUsu), cidUsu, emailUsu, adminUsu);
 					
-					Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Editar Usuário");
-			        dialogoInfo.setContentText("Usuário editado com sucesso!");
-			        dialogoInfo.showAndWait();
+					popup.getInformation("Usuário editado com sucesso!");
 			        
 			        carregarTabelaUsuario();
 			        limparCampos();
 				}else{
-					Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Editar Usuário");
-			        dialogoInfo.setContentText("O número do endereço deve ser um numeral inteiro!");
-			        dialogoInfo.showAndWait();
+					popup.getError("O número do endereço deve ser um numeral inteiro!");
 				}
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Editar Usuário");
-		        dialogoInfo.setContentText("Login já existente!");
-		        dialogoInfo.showAndWait();
+				popup.getError("Login já existente!");
 			}
 		}else{
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Editar Usuário");
-	        dialogoInfo.setContentText("Preencha todos os campos!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Preencha todos os campos!");
 		}
 	}
 	
@@ -161,19 +146,11 @@ public class EditarUsuarioController {
 				novaSenha.setVisible(true);
 				btnSalvarSenha.setVisible(true);
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Editar Usuário");
-		        dialogoInfo.setContentText("Selecione um usuario para mudar a senha!");
-		        dialogoInfo.showAndWait();
+				popup.getError("Selecione um usuario para mudar a senha!");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Editar Usuário");
-	        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Houve um erro, tente novamente!");
 		}
 	}
 	
@@ -189,41 +166,21 @@ public class EditarUsuarioController {
 						String novaCripto = Utils.senhaSha256(noSe);
 						usuDao.trocarSenha(usuario.getId(), novaCripto);
 						
-						Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-				        dialogoInfo.setTitle("BuyMe");
-				        dialogoInfo.setHeaderText("Editar Usuário");
-				        dialogoInfo.setContentText("Senha modificada com sucesso!");
-				        dialogoInfo.showAndWait();
+						popup.getInformation("Senha modificada com sucesso!");
 				        
 				        limparCampos();
 					}else{
-						Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-				        dialogoInfo.setTitle("BuyMe");
-				        dialogoInfo.setHeaderText("Editar Usuário");
-				        dialogoInfo.setContentText("Senha antiga incorreta!");
-				        dialogoInfo.showAndWait();
+						popup.getError("Senha antiga incorreta!");
 					}
 				}else{
-					Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Editar Usuário");
-			        dialogoInfo.setContentText("A nova senha deve conter mais de 4 caracteres!");
-			        dialogoInfo.showAndWait();
+					popup.getError("A nova senha deve conter mais de 4 caracteres!");
 				}
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Editar Usuário");
-		        dialogoInfo.setContentText("Preencha todos os campos!");
-		        dialogoInfo.showAndWait();
+				popup.getError("Preencha todos os campos!");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Editar Usuário");
-	        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Houve um erro, tente novamente!");
 		}
 	}
 	
@@ -236,33 +193,17 @@ public class EditarUsuarioController {
 					usuDao.removerById(usuario.getId());
 					retirarUsuario();
 					
-					Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Editar Usuário");
-			        dialogoInfo.setContentText("Usuario excluido com sucesso!");
-			        dialogoInfo.showAndWait();
+					popup.getInformation("Usuario excluido com sucesso!");
 				}catch(Exception e){
 					e.printStackTrace();
-					Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Editar Usuário");
-			        dialogoInfo.setContentText("Houve um erro ao tentar excluir, tente novamente!");
-			        dialogoInfo.showAndWait();
+					popup.getError("Houve um erro ao tentar excluir, tente novamente!");
 				}
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Editar Usuário");
-		        dialogoInfo.setContentText("Selecione algum usuário para excluir!");
-		        dialogoInfo.showAndWait();
+				popup.getError("Selecione algum usuário para excluir!");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Editar Usuário");
-	        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Houve um erro, tente novamente!");
 		}
 		
 	}
@@ -292,19 +233,11 @@ public class EditarUsuarioController {
 				btnFinalizar.setDisable(false);
 				btnTrocarSenha.setDisable(false);
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Editar Usuário");
-		        dialogoInfo.setContentText("Selecione algum usuário para editar!");
-		        dialogoInfo.showAndWait();
+				popup.getError("Selecione algum usuário para editar!");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Editar Usuário");
-	        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Houve um erro, tente novamente!");
 		}
 	}
 	

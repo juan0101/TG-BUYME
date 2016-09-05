@@ -34,6 +34,10 @@ public class Cliente {
 	private String cidade;
 	@Column(name="email", nullable=false)
 	private String email;
+	@Column(name="login")
+	private String login;
+	@Column(name="senha")
+	private String senha;
 	@Column(name="encomenda")
 	@OneToMany(mappedBy="cliente",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	private List<Encomenda> encomenda;

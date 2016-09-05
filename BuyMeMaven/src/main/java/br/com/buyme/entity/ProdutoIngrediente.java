@@ -1,7 +1,5 @@
 package br.com.buyme.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +12,18 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="produto_ingrediente")
-public class ProdutoIngrediente implements Serializable{
+public class ProdutoIngrediente{
 	
-	private static final long serialVersionUID = -2912431442618431922L;
+	public ProdutoIngrediente(ProdutoIngrediente pi){
+		this.id = pi.getId();
+		this.produto = pi.getProduto();
+		this.ingrediente = pi.getIngrediente();
+		this.descricao_ingrediente = pi.getDescricao_ingrediente();
+		this.grama_quilo = pi.getGrama_quilo();
+		this.quantidade = pi.getQuantidade();
+	}
+	
+	public ProdutoIngrediente() {}
 	
 	@Id
 	@GeneratedValue

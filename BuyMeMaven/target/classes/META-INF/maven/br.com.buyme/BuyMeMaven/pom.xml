@@ -55,6 +55,12 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/cz.i24.util/jasper-utils -->
+		<dependency>
+			<groupId>cz.i24.util</groupId>
+			<artifactId>jasper-utils</artifactId>
+			<version>1.0.7</version>
+		</dependency>
 
 	</dependencies>
 

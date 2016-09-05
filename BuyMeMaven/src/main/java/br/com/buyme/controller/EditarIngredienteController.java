@@ -96,7 +96,7 @@ public class EditarIngredienteController {
 					ingDao.excluir(ingrediente.getId());
 					data.remove(ingrediente);
 					
-					Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+					Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 			        dialogoInfo.setTitle("BuyMe");
 			        dialogoInfo.setHeaderText("Editar Ingrediente");
 			        dialogoInfo.setContentText("Ingrediente excluido com sucesso!");
@@ -147,7 +147,7 @@ public class EditarIngredienteController {
 				try{
 					ingDao.editarIngrediente(ingrediente.getId(), descIng);
 					
-					Alert dialogoInfo2 = new Alert(Alert.AlertType.CONFIRMATION);
+					Alert dialogoInfo2 = new Alert(Alert.AlertType.INFORMATION);
 			        dialogoInfo2.setTitle("BuyMe");
 			        dialogoInfo2.setHeaderText("Edição de ingrediente");
 			        dialogoInfo2.setContentText("Ingrediente editado com sucesso.");

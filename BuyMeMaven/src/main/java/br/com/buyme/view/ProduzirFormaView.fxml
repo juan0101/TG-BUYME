@@ -21,7 +21,7 @@
       </Label>
       <ComboBox fx:id="comboForma" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="190.0" />
       <Button fx:id="btnGerarDados" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onAction="#gerarDados" text="Gerar dados" />
-      <Button fx:id="btnProduzir" layoutX="625.0" layoutY="154.0" mnemonicParsing="false" onAction="#produzir" prefHeight="25.0" prefWidth="81.0" text="Produzir" />
+      <Button fx:id="btnProduzir" layoutX="625.0" layoutY="250.0" mnemonicParsing="false" onAction="#produzir" prefHeight="25.0" prefWidth="81.0" text="Produzir" />
       <TableView fx:id="tabela_ingrediente" layoutX="12.0" layoutY="218.0" prefHeight="417.0" prefWidth="579.0">
          <columns>
             <TableColumn fx:id="coluna_ingrediente" prefWidth="259.0" text="INGREDIENTE" />
@@ -29,8 +29,8 @@
             <TableColumn fx:id="coluna_medida" prefWidth="144.0" text="MEDIDA" />
          </columns>
       </TableView>
-      <DatePicker fx:id="dataValidade" layoutX="762.0" layoutY="119.0" />
-      <Label layoutX="625.0" layoutY="121.0" text="Data de validade:">
+      <DatePicker fx:id="dataValidade" layoutX="762.0" layoutY="215.0" />
+      <Label layoutX="625.0" layoutY="217.0" text="Data de validade:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -46,20 +46,27 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="lblAviso" layoutX="625.0" layoutY="218.0" text="A produção foi enviada para análise." visible="false">
+      <Label fx:id="lblAviso" layoutX="625.0" layoutY="349.0" text="A produção foi enviada para análise." visible="false">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblAvisoQuantidade" layoutX="626.0" layoutY="252.0" text="Quantidade de produtos esperada:" visible="false">
+      <Label fx:id="lblAvisoQuantidade" layoutX="626.0" layoutY="383.0" text="Quantidade de produtos esperada:" visible="false">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblValor" layoutX="875.0" layoutY="252.0" text="0" visible="false">
+      <Label fx:id="lblValor" layoutX="875.0" layoutY="383.0" text="0" visible="false">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Label layoutX="449.0" layoutY="123.0" text="Lote:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lote" layoutX="449.0" layoutY="147.0" prefHeight="25.0" prefWidth="115.0" />
+      <Button fx:id="btnGerarLote" layoutX="574.0" layoutY="147.0" mnemonicParsing="false" onAction="#gerarLote" prefHeight="25.0" prefWidth="81.0" text="Gerar Lote" />
    </children>
 </AnchorPane>

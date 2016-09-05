@@ -26,6 +26,11 @@ public class Utils {
 		return dateFormat.format(date);
 	}
 	
+	public static String getDate(Date date){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		return dateFormat.format(date);
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static Date getDateParcela(Date dOrigem, int dPagamento, int m){
 		Date data = new Date();

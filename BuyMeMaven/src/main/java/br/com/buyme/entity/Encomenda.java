@@ -32,5 +32,9 @@ public class Encomenda {
 	private String descProduto;
 	@Column(name="descCliente", nullable=false)
 	private String descCliente;
-
+	@Column(name="desativado", nullable=false)
+	private boolean desativado;
+	@Column(name="idProdutoPronto")
+	private Integer idProdutoPronto;
+	
 }

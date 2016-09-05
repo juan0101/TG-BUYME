@@ -11,7 +11,7 @@ public class ConexaoBD {
 	public Connection conn;
     private Statement statement;
     public static ConexaoBD db;
-    private ConexaoBD() {
+    public ConexaoBD() {
         String url= "jdbc:mysql://localhost:3306/";
         String dbName = "BUYME_TESTE";
         String driver = "com.mysql.jdbc.Driver";
@@ -25,6 +25,25 @@ public class ConexaoBD {
             sqle.printStackTrace();
         }
     }
+    
+    public Connection getConnection(){
+    	String url= "jdbc:mysql://localhost:3306/";
+        String dbName = "BUYME_TESTE";
+        String driver = "com.mysql.jdbc.Driver";
+        String userName = "root";
+        String password = "123";
+        try {
+            Class.forName(driver).newInstance();
+            return this.conn = (Connection)DriverManager.getConnection(url+dbName,userName,password);
+        }
+        catch (Exception sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+    
     /**
      *
      * @return MysqlConnect Database connection object

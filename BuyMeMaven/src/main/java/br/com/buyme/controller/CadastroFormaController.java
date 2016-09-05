@@ -102,7 +102,7 @@ public class CadastroFormaController {
 								pro.setForma(listaForma); //Setando a lista de forma no produto
 								prodDao.updateSalvarForma(pro); //Update no produto com a lista de forma
 								
-								Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+								Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 						        dialogoInfo.setTitle("BuyMe");
 						        dialogoInfo.setHeaderText("Salvar Forma");
 						        dialogoInfo.setContentText("Forma salva com sucesso!");

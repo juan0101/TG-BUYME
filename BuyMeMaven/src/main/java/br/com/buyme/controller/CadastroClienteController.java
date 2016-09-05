@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class CadastroClienteController {
 
-	@FXML private TextField nome,telefone,endereco,end_numero,cidade,email;
+	@FXML private TextField nome,telefone,endereco,end_numero,cidade,email,login,senha;
 	private ClienteDAO cliDao = new ClienteDAO();
 	
 	@FXML
@@ -28,12 +28,14 @@ public class CadastroClienteController {
 			String numUsu = end_numero.getText();
 			String cidUsu = cidade.getText();
 			String eUsu = email.getText();
+			String loginUsu = login.getText();
+			String senhaUsu = senha.getText();
 			if(nomeUsu != null && !nomeUsu.isEmpty() && telUsu != null && !telUsu.isEmpty() && endUsu != null && !endUsu.isEmpty() && 
 					numUsu != null && !numUsu.isEmpty() && cidUsu != null && !cidUsu.isEmpty() && eUsu != null && !eUsu.isEmpty()){
 				if(Utils.isNumber(numUsu)){
 					try{
-						cliDao.salvar(nomeUsu, telUsu, endUsu, Integer.parseInt(numUsu), cidUsu, eUsu);
-						Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+						cliDao.salvar(nomeUsu, telUsu, endUsu, Integer.parseInt(numUsu), cidUsu, eUsu, loginUsu, senhaUsu);
+						Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 				        dialogoInfo.setTitle("BuyMe");
 				        dialogoInfo.setHeaderText("Salvar Cliente");
 				        dialogoInfo.setContentText("Cliente salvo com sucesso!");
@@ -79,6 +81,8 @@ public class CadastroClienteController {
 		end_numero.setText("");
 		cidade.setText("");
 		email.setText("");
+		login.setText("");
+		senha.setText("");
 	}
 	
 	@FXML

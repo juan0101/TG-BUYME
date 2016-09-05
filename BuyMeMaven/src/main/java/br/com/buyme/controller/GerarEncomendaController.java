@@ -150,16 +150,20 @@ public class GerarEncomendaController {
     	if(dataSave != null && !dataSave.isEmpty()){
     		for(Encomenda e: dataSave){
     			try{
-    				encDao.salvar(e.getCodigo(), e.getCliente(), e.getProduto(), e.getQuantidade(), e.getValor(), e.getDescCliente(),e.getDescProduto());
+    				encDao.salvar(e.getCodigo(), e.getCliente(), e.getProduto(), e.getQuantidade(), 
+    						e.getValor(), e.getDescCliente(),e.getDescProduto());
+    				
     			}catch(Exception ex){
     				ex.printStackTrace();
     			}
     		}
-    		Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+    		Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 	        dialogoInfo.setTitle("BuyMe");
 	        dialogoInfo.setHeaderText("Salvar Encomenda");
 	        dialogoInfo.setContentText("As encomendas foram salvas com sucesso!");
 	        dialogoInfo.showAndWait();
+	        
+	        limparCampos();
     	}else{
     		Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
 	        dialogoInfo.setTitle("BuyMe");
@@ -194,6 +198,15 @@ public class GerarEncomendaController {
 			return 0;
 		}
 	}
+    
+    public void mostrarValor(){
+    	String strProd = comboProd.getSelectionModel().selectedItemProperty().getValue();
+    	for(Produto prod: produtos){
+			if(prod.getNome().equals(strProd)){
+				lblValor.setText(prod.getValor()+"");
+			}
+		}
+    }
     
 	@FXML
 	public void voltarMenu(ActionEvent event) throws IOException{

@@ -17,7 +17,10 @@
 		<class>br.com.buyme.entity.Forma</class>
 		<class>br.com.buyme.entity.ProdutoAnalisar</class>
 		<class>br.com.buyme.entity.ProdutoPronto</class>
+		<class>br.com.buyme.entity.ProdutoVendido</class>
+		<class>br.com.buyme.entity.MotivoPerda</class>
 		<class>br.com.buyme.entity.Cliente</class>
+		<class>br.com.buyme.entity.ProdMot</class>
 
 		<properties>
 			<!-- dados da conexao -->

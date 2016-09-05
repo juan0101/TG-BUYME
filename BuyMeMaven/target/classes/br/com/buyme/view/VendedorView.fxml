@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
-	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.VendedorController">
+   <children>
+      <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="950.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Encomendas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#atenderEncomenda" text="Atender Encomendas" />
+                  <MenuItem mnemonicParsing="false" onAction="#gerarEncomenda" text="Gerar Encomenda" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Venda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#venda" text="Realizar Venda" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

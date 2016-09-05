@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import br.com.buyme.entity.ProdMot;
 import br.com.buyme.entity.ProdutoAnalisar;
 
 public class ProdutoAnalisarDAO {
@@ -17,18 +18,21 @@ public class ProdutoAnalisarDAO {
 		return factory.createEntityManager();
 	}
 	
-	public void salvar(int quantidade, String descricao, Date data_fabricacao, Date data_validade, double valor, boolean analisado){
+	public void salvar(int quantidade, String descricao, Date data_fabricacao, Date data_validade, double valor,
+			boolean analisado, int codigoProduto, String codLote){
 		EntityManager em = getEM();
 		try{
 			ProdutoAnalisar pa = new ProdutoAnalisar();
 			em.getTransaction().begin();
 			pa.setQuantidade(quantidade);
 			pa.setDescricao(descricao);
-			pa.setData_fabricacao(data_fabricacao);
-			pa.setData_validade(data_validade);
+			pa.setDataFabricacao(data_fabricacao);
+			pa.setDataValidade(data_validade);
 			pa.setValor(valor);
 			pa.setValorTotal(valor * quantidade);
 			pa.setAnalisado(analisado);
+			pa.setCodigoProduto(codigoProduto);
+			pa.setLote(codLote);
 			em.persist(pa);
 			em.getTransaction().commit();
 		}catch(Exception e){
@@ -37,6 +41,23 @@ public class ProdutoAnalisarDAO {
 		}finally {
 			em.close();
 		}
+	}
+	
+	public ProdutoAnalisar getByLote(String lote){
+		EntityManager em = getEM();
+		ProdutoAnalisar pa = null;
+		try{
+			em.getTransaction().begin();
+			Query query = em.createQuery("Select pa FROM ProdutoAnalisar pa where pa.lote = :lote");
+			query.setParameter("lote", lote);
+			pa = (ProdutoAnalisar)query.getSingleResult();
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		}finally {
+			em.close();
+		}
+		return pa;
 	}
 	
 	public void excluir(int id){
@@ -55,14 +76,19 @@ public class ProdutoAnalisarDAO {
 		}
 	}
 	
-	public void finalizarAnalise(int id, int quantidadeProduzida){
+	public void finalizarAnalise(int id, int quantidadeProduzida, List<ProdMot> listProdMot){
 		EntityManager em = getEM();
 		ProdutoAnalisar pa = null;
 		try{
 			pa = em.find(ProdutoAnalisar.class, id);
 			em.getTransaction().begin();
 			pa.setQuantidadeProduzida(quantidadeProduzida);
+			pa.setQuantidadePerda(pa.getQuantidade() - pa.getQuantidadeProduzida());
 			pa.setAnalisado(true);
+			for(ProdMot pm: listProdMot){
+				pm.setProdAnalisar(pa);
+			}
+			pa.setProd_mot(listProdMot);
 			em.getTransaction().commit();
 		}catch(Exception e){
 			e.printStackTrace();

@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.AdministradorController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.AdministradorController">
    <children>
-      <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="800.0">
+      <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="950.0">
         <menus>
           <Menu fx:id="btnCadastrar" mnemonicParsing="false" text="Cadastrar">
             <items>
@@ -20,6 +20,8 @@
                   <MenuItem fx:id="btnCadastrarForma" mnemonicParsing="false" onAction="#cadastrarForma" text="Forma" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#cadastrarCliente" text="Cliente" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#cadastrarMotivoPerda" text="Motivo Perda" />
             </items>
           </Menu>
           <Menu fx:id="btnEditar" mnemonicParsing="false" text="Editar Cadastro">
@@ -31,6 +33,10 @@
                   <MenuItem id="btnEditarProduto" fx:id="btnEditarProduto" mnemonicParsing="false" onAction="#editarProduto" text="Produto" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="btnEditarForma" mnemonicParsing="false" onAction="#editarForma" text="Forma" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#editarCliente" text="Cliente" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#editarMotivoPerda" text="Motivo Perda" />
             </items>
           </Menu>
           <Menu fx:id="btnProducao" mnemonicParsing="false" text="Produção">
@@ -41,25 +47,26 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Encomendas">
               <items>
-                <MenuItem mnemonicParsing="false" text="Verificar Encomendas" />
+                <MenuItem mnemonicParsing="false" onAction="#atenderEncomenda" text="Atender Encomendas" />
                   <MenuItem mnemonicParsing="false" onAction="#gerarEncomenda" text="Gerar Encomenda" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Venda">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#venda" text="Realizar Venda" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Relatórios">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#relatorioPerdaProduto" text="Perda Produto" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estoque">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#verificarEstoque" text="Verificar Estoque" />
               </items>
             </Menu>
         </menus>
       </MenuBar>
-      <TabPane layoutY="27.0" prefHeight="575.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Resumo do dia">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="582.0" />
-            </content>
-          </Tab>
-          <Tab text="Informações">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
    </children>
 </AnchorPane>

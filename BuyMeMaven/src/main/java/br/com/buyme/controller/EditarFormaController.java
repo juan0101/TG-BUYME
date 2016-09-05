@@ -122,7 +122,7 @@ public class EditarFormaController {
 			try{
 				data.remove(forma);
 				formaDao.excluir(forma.getId());
-				Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+				Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 		        dialogoInfo.setTitle("BuyMe");
 		        dialogoInfo.setHeaderText("Editar Forma");
 		        dialogoInfo.setContentText("Forma excluida com sucesso!");
@@ -166,7 +166,7 @@ public class EditarFormaController {
 						if(pro.getNome().equals(prodForma)){
 							formaDao.salvarEdicao(codForma, descForma, Integer.parseInt(quantForma), pro.getId(), forma.getId());
 							
-							Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+							Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 					        dialogoInfo.setTitle("BuyMe");
 					        dialogoInfo.setHeaderText("Editar Forma");
 					        dialogoInfo.setContentText("Forma editada com sucesso!");

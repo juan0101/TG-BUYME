@@ -11,7 +11,9 @@ import br.com.buyme.dao.FormaDAO;
 import br.com.buyme.dao.ProdutoAnalisarDAO;
 import br.com.buyme.entity.Forma;
 import br.com.buyme.entity.Produto;
+import br.com.buyme.entity.ProdutoAnalisar;
 import br.com.buyme.entity.ProdutoIngrediente;
+import br.com.buyme.popup.Popup;
 import br.com.buyme.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,8 +36,9 @@ import javafx.stage.Stage;
 
 public class ProduzirFormaController {
 
+	private Popup popup = new Popup("Produção de forma");
 	@FXML private Button btnProduzir;
-	@FXML private TextField quantidade;
+	@FXML private TextField quantidade,lote;
 	@FXML private ComboBox<String> comboForma;
 	@FXML private TableView<ProdutoIngrediente> tabela_ingrediente;
 	@FXML private TableColumn<ProdutoIngrediente, String> coluna_ingrediente;
@@ -51,6 +54,27 @@ public class ProduzirFormaController {
     private Forma forma = null;
     private Produto produto = null;
     private ProdutoAnalisarDAO paDao = new ProdutoAnalisarDAO();
+    
+    @FXML
+    public void gerarLote(){
+    	Random randomGenerator = new Random();
+    	ProdutoAnalisar pa = null;
+    	try{
+			while(true){
+				int codLote = randomGenerator.nextInt(10000);
+				pa = paDao.getByLote("L"+codLote);
+				if(pa != null){
+					continue;
+				}else{
+					lote.setText("L"+codLote);
+					break;
+				}
+			}
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		popup.getError("Erro ao gerar Lote! Tente novamente.");
+    	}
+    }
     
 	@FXML
 	public void gerarDados(){
@@ -76,7 +100,7 @@ public class ProduzirFormaController {
 							List<ProdutoIngrediente> listaPi = produto.getProduto_ingrediente();
 							List<ProdutoIngrediente> listaPiTotal = new ArrayList<ProdutoIngrediente>();
 							for(ProdutoIngrediente pi: listaPi){
-								ProdutoIngrediente auxPi = pi;
+								ProdutoIngrediente auxPi = new ProdutoIngrediente(pi);
 								auxPi.setQuantidade((pi.getQuantidade() * forma.getQuantidade()) * quantidadeForma);
 								if(auxPi.getQuantidade() >= 1000){
 									auxPi.setQuantidade(auxPi.getQuantidade()/1000);
@@ -86,53 +110,26 @@ public class ProduzirFormaController {
 							}
 							data.setAll(listaPiTotal);
 						}else{
-							Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-					        dialogoInfo.setTitle("BuyMe");
-					        dialogoInfo.setHeaderText("Produção de forma");
-					        dialogoInfo.setContentText("Não há produto para essa forma!");
-					        dialogoInfo.showAndWait();
+							popup.getError("Não há produto para essa forma!");
 						}
-						
 					}else{
-						Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-				        dialogoInfo.setTitle("BuyMe");
-				        dialogoInfo.setHeaderText("Produção de forma");
-				        dialogoInfo.setContentText("Forma não encontrada!");
-				        dialogoInfo.showAndWait();
+						popup.getError("Forma não encontrada!");
 					}
 				}else{
-					Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-			        dialogoInfo.setTitle("BuyMe");
-			        dialogoInfo.setHeaderText("Produção de forma");
-			        dialogoInfo.setContentText("A quantidade deve ser um numeral inteiro!");
-			        dialogoInfo.showAndWait();
+					popup.getError("A quantidade deve ser um numeral inteiro!");
 				}
 			}else{
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Produção de forma");
-		        dialogoInfo.setContentText("O campo quantidade não pode ficar em branco!");
-		        dialogoInfo.showAndWait();
+				popup.getError("O campo quantidade não pode ficar em branco!");
 			}
 		}else{
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Produção de forma");
-	        dialogoInfo.setContentText("Seleciona uma forma para gerar os dados!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Seleciona uma forma para gerar os dados!");
 		}
-	}
-	
-	public int gerarCodigo(){
-		Random randomGenerator = new Random();
-		return randomGenerator.nextInt(10000);
 	}
 	
 	public void limparCampos(){
 		comboForma.getSelectionModel().clearSelection();
 		quantidade.setText("");
 		data.clear();
-		dataValidade.getEditor().clear();
 	}
 	
 	/**
@@ -142,40 +139,34 @@ public class ProduzirFormaController {
 	@FXML
 	public void produzir(){
 		LocalDate stringData = dataValidade.getValue();
+		String codLote = lote.getText();
 		if(stringData != null){
-			try{
-				Date data_validade = Utils.getLocalDateToDate(stringData);
-				Date data_fabricacao = new Date();
-				int numeroDeProdutos = forma.getQuantidade() * quantidadeForma;
-				paDao.salvar(numeroDeProdutos, forma.getProduto().getNome(), data_fabricacao, data_validade, forma.getProduto().getValor(), false);
-				
-				Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Produção de forma");
-		        dialogoInfo.setContentText("A produção foi enviada para análise!");
-		        dialogoInfo.showAndWait();
-		        
-		        lblAviso.setVisible(true);
-		        lblAvisoQuantidade.setVisible(true);
-		        lblValor.setText(numeroDeProdutos+"");
-		        lblValor.setVisible(true);
-		        
-		        limparCampos();
-		        
-			}catch(Exception e){
-				e.printStackTrace();
-				Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-		        dialogoInfo.setTitle("BuyMe");
-		        dialogoInfo.setHeaderText("Produção de forma");
-		        dialogoInfo.setContentText("Houve um erro, tente novamente!");
-		        dialogoInfo.showAndWait();
+			if(codLote != null && !codLote.isEmpty()){
+				try{
+					Date data_validade = Utils.getLocalDateToDate(stringData);
+					Date data_fabricacao = new Date();
+					int numeroDeProdutos = forma.getQuantidade() * quantidadeForma;
+					
+					paDao.salvar(numeroDeProdutos, forma.getProduto().getNome(), data_fabricacao, data_validade, forma.getProduto().getValor(), false, Integer.parseInt(produto.getCodigo()),codLote);
+					
+					popup.getInformation("A produção foi enviada para análise!");
+			        
+			        lblAviso.setVisible(true);
+			        lblAvisoQuantidade.setVisible(true);
+			        lblValor.setText(numeroDeProdutos+"");
+			        lblValor.setVisible(true);
+			        
+			        limparCampos();
+			        
+				}catch(Exception e){
+					e.printStackTrace();
+					popup.getError("Houve um erro, tente novamente!");
+				}
+			}else{
+				popup.getError("Gere um código de lote para esta produção!");
 			}
 		}else{
-			Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-	        dialogoInfo.setTitle("BuyMe");
-	        dialogoInfo.setHeaderText("Produção de forma");
-	        dialogoInfo.setContentText("Selecione a data de validade da produção!");
-	        dialogoInfo.showAndWait();
+			popup.getError("Selecione a data de validade da produção!");
 		}
 	}
 	
