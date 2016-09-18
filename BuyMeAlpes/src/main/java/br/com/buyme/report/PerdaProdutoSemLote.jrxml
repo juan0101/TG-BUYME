@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-09-01T12:02:03 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PerdaProduto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adbdf56e-aa2c-4c76-b684-74246c5e3f27">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BuyMe"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#A600FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#A53DFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#DD8FFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="TabelaTotal" uuid="5d76b478-a988-4aab-8361-67732c6c9ea7">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BuyMe"/>
+		<queryString>
+			<![CDATA[select SUM(quantidade) as quantidade, 
+SUM(quantidade_produzida) as produzida, 
+SUM(quantidadePerda) as perda 
+from produto_analisar where analisado = 1]]>
+		</queryString>
+		<field name="quantidade" class="java.math.BigDecimal"/>
+		<field name="produzida" class="java.math.BigDecimal"/>
+		<field name="perda" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="dataExport" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from produto_analisar]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="lote" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="quantidadePerda" class="java.lang.Integer"/>
+	<field name="quantidade_produzida" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="87" y="47" width="380" height="30" uuid="75293413-e0a9-449f-ab55-da6a2e7c7ec4"/>
+				<textElement>
+					<font fontName="SansSerif" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE PERDA DE PRODUTOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="77" y="71" width="403" height="1" uuid="82e64cf4-caea-4870-b93e-bc72941710c4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="480" y="-15" width="88" height="86" uuid="7bbb87b0-18f5-4d86-82c7-d2ce5de09bc6"/>
+				<imageExpression><![CDATA["C:/Users/juanv/Desktop/TG/alpes_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="37" width="81" height="21" uuid="ab9291d9-13f1-490c-8500-a1bc215589cc"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="36" width="94" height="22" uuid="23167e19-7e6b-47b0-b359-14ee078be06a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="36" width="94" height="22" uuid="44e8be27-46b1-4a15-b4ab-0188b7170c52"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Q.Esperada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="36" width="94" height="22" uuid="774f7460-5ee9-40f7-acbd-5e5e060bc557"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Q.Produzida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="36" width="94" height="22" uuid="9699ec01-61c9-4a6e-9c24-b33be0a532af"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Q.Perda]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="58" width="595" height="1" uuid="be4a77da-4bef-418d-8971-4fdf2f6605ff"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="3" width="81" height="20" uuid="71c1687c-547e-4266-9404-d97817aa48b6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="2" width="94" height="23" uuid="98ebdb60-025b-4567-be0a-e5dd46b59989"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="2" width="94" height="23" uuid="aed3272f-55e5-4e9b-bce6-e8f304652d5c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade_produzida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="2" width="95" height="23" uuid="9e785ceb-47f4-4f3b-bfe2-c239c7166bac"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidadePerda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="100" height="20" uuid="96e52df1-81d1-423e-8b3b-5c65c24ef544"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="80" width="141" height="19" uuid="19013f77-a90a-4cd2-8828-7f847cbce858"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de exportação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="141" y="81" width="90" height="18" uuid="6d34a0c7-3187-4429-90ea-e6933b4e25ea"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataExport}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="0" width="546" height="60" uuid="937db065-a33c-4ed1-9ab4-48bdce83f1f1">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="TabelaTotal" uuid="0cf78120-3568-446b-aea2-fbde839b8ae6">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="182" uuid="7f4f78b1-61fa-4c47-9b7f-de4012046fa0">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="182" height="30" uuid="ed73110f-61a6-4df7-baeb-3c7db095a4b5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[QUANTIDADE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="182" height="30" uuid="a79b28f9-7193-456d-b1b7-a99eb170de3c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="182" uuid="482daf74-3b14-45c8-b937-c5270cd79f13">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="182" height="30" uuid="b8618f29-c946-4f23-9aee-34950ede91b9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[QUANTIDADE PRODUZIDA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="182" height="30" uuid="4ce92f3f-7559-4e05-bf86-9895c0b60592"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{produzida}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="182" uuid="aadcc1b6-b5d8-4c97-9585-ae72c2ff1744">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="182" height="30" uuid="2dd16cf5-c44d-4336-945e-9a2f58bc4cac"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[QUANTIDADE PERDIDA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="182" height="30" uuid="06688ecf-841b-46b4-8cd5-27fd06a28d1e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{perda}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</pageFooter>
+</jasperReport>

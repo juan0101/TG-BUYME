@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.CadastroParametroController">
+   <children>
+      <Label id="titulo" layoutX="291.0" layoutY="39.0" text="Permissões" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <JFXCheckBox fx:id="cadastro" layoutX="101.0" layoutY="145.0" text="Cadastro" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="editarCadastro" layoutX="101.0" layoutY="173.0" text="Editar Cadastro" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="producao" layoutX="101.0" layoutY="201.0" text="Produção" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="encomenda" layoutX="101.0" layoutY="229.0" text="Encomendas" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="venda" layoutX="101.0" layoutY="257.0" text="Venda" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="relatorio" layoutX="101.0" layoutY="285.0" text="Relatórios" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXButton fx:id="btnFinalizar" layoutX="111.0" layoutY="372.0" onAction="#finalizar" prefHeight="36.0" prefWidth="127.0" ripplerFill="#ffed00" text="Finalizar">
+         <graphic>
+            <ImageView pickOnBounds="true">
+               <image>
+                  <Image url="@../images/permissaoIcone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXCheckBox fx:id="home" layoutX="101.0" layoutY="314.0" text="Home" textFill="WHITE" unCheckedColor="GOLD">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+   </children>
+</AnchorPane>
