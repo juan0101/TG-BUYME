@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Sep 19 18:35:42 BRT 2016
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=BuyMeAlpes_fat.jar
+manifest.mergeall=true
+manifest.mainclass=br.com.buyme.controller.Login
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

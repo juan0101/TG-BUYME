@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.buyme.controller.TrocarSenhaUsuarioController">
+   <children>
+      <Label fx:id="titulo" layoutX="65.0" layoutY="23.0" stylesheets="@view.css" text="Troca de senha de usuário" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="novaSenha" layoutX="65.0" layoutY="172.0" maxWidth="271.0" minWidth="271.0" prefHeight="32.0" prefWidth="271.0" style="-fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="senhaAntiga" layoutX="65.0" layoutY="106.0" maxWidth="271.0" minWidth="242.0" prefHeight="32.0" prefWidth="271.0" style="-fx-text-inner-color: #ffffff;" unFocusColor="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton fx:id="btnSalvarSenha" layoutX="60.0" layoutY="226.0" onAction="#salvarNovaSenha" ripplerFill="#ffed00" text="Salvar Senha">
+         <graphic>
+            <ImageView pickOnBounds="true">
+               <image>
+                  <Image url="@../images/confirmarIcone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnCancelar" layoutX="215.0" layoutY="226.0" onAction="#cancelar" ripplerFill="#ffed00" text="Cancelar">
+         <graphic>
+            <ImageView pickOnBounds="true">
+               <image>
+                  <Image url="@../images/cancelarIcone.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="74.0" layoutY="82.0" text="Senha Antiga:" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="150.0" text="Nova Senha:" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
